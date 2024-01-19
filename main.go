@@ -8,6 +8,7 @@ import (
 	"context"
     "time"
  
+    "github.com/vinodnextcoder/golang-mongo-server/mongoconnect"
     "go.mongodb.org/mongo-driver/mongo"
     "go.mongodb.org/mongo-driver/mongo/options"
     "go.mongodb.org/mongo-driver/mongo/readpref"
@@ -17,6 +18,7 @@ import (
 	swaggerFiles "github.com/swaggo/files"
 	ginSwagger "github.com/swaggo/gin-swagger"
 	_ "github.com/vinodnextcoder/golang-mongo-server/docs"
+  
 )
 
 // @title           Swagger Example API
@@ -42,18 +44,17 @@ func main() {
 
   // Get Client, Context, CancelFunc and 
     // err from connect method.
-    client, ctx, cancel, err := connect("mongodb://localhost:27017/test")
+    client, ctx, cancel, err := mongoconnect.Connect("mongodb://localhost:27017/test")
     if err != nil {
         panic(err)
     }
      
     // Release resource when the main
     // function is returned.
-    defer close(client, ctx, cancel)
+    defer mongoconnect.Close(client, ctx, cancel)
 	
-     
     // Ping mongoDB with Ping method
-    ping(client, ctx)
+    mongoconnect.Ping(client, ctx)
 
   port := os.Getenv("PORT")
 
