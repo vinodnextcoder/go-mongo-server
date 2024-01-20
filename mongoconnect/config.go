@@ -4,6 +4,7 @@ import (
 	"fmt"
 	"context"
     "time"
+    // "go.mongodb.org/mongo-driver/bson"
     "go.mongodb.org/mongo-driver/mongo"
     "go.mongodb.org/mongo-driver/mongo/options"
     "go.mongodb.org/mongo-driver/mongo/readpref"
@@ -64,4 +65,19 @@ if err := client.Ping(ctx, readpref.Primary()); err != nil {
 }
 fmt.Println("connected successfully")
 return nil
+}
+ 
+// insertOne is a user defined method, used to insert
+// documents into collection returns result of InsertOne
+// and error if any.
+func Insertdata(client *mongo.Client, ctx context.Context, dataBase, col string, doc interface{}) (*mongo.InsertOneResult, error) {
+ 
+    // select database and collection ith Client.Database method 
+    // and Database.Collection method
+    collection := client.Database(dataBase).Collection(col)
+     
+    // InsertOne accept two argument of type Context 
+    // and of empty interface   
+    result, err := collection.InsertOne(ctx, doc)
+    return result, err
 }
