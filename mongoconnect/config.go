@@ -81,3 +81,26 @@ func Insertdata(client *mongo.Client, ctx context.Context, dataBase, col string,
     result, err := collection.InsertOne(ctx, doc)
     return result, err
 }
+
+type marks struct {
+    rollNo     int  `json:"rollno"`
+    maths  int  `json:"maths"`
+    science int  `json:"science"`
+    computer  int `json:"computer"`
+}
+
+//  for testing added
+
+func PostMarks(c *gin.Context) {
+    var newMarks marks
+
+    // Call BindJSON to bind the received JSON to
+    // newAlbum.
+    if err := c.BindJSON(&newMarks); err != nil {
+        return
+    }
+
+    // Add the new album to the slice.
+    albums = append(albums, newMarks)
+    c.IndentedJSON(http.StatusCreated, newMarks)
+}
