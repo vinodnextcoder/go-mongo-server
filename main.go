@@ -92,6 +92,7 @@ func main() {
 	router := gin.Default()
 
 	router.GET("/", helloCall)
+  router.POST("/add", mongoconnect.PostMarks)
 	router.GET("/swagger/*any", ginSwagger.WrapHandler(swaggerFiles.Handler))
 
 

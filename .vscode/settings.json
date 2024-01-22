@@ -1,0 +1,22 @@
+{
+    "go.delveConfig": {
+        "GOPATH": "C:\\Users\\vinod_khetade\\Documents\\Go-work",
+        "GOMODCACHE": "C:\\Users\\vinod_khetade\\Documents\\Go-work\\pkg\\mod"
+    },
+    "go.gopath": "C:\\Users\\vinod_khetade\\Documents\\Go-work",
+    "gopls": {
+        "build.env": {
+            "GOPATH": "C:\\Users\\vinod_khetade\\Documents\\Go-work",
+            "GOMODCACHE": "C:\\Users\\vinod_khetade\\Documents\\Go-work\\pkg\\mod"
+        },
+        "dev.env": {
+            "GOPATH": "C:\\Users\\vinod_khetade\\Documents\\Go-work",
+            "GOMODCACHE": "C:\\Users\\vinod_khetade\\Documents\\Go-work\\pkg\\mod"
+        }
+    },
+    "go.terminal.activateEnvironment": false,
+    "go.toolsEnvVars": {
+        "GOPATH": "C:\\Users\\vinod_khetade\\Documents\\Go-work",
+        "GOMODCACHE": "C:\\Users\\vinod_khetade\\Documents\\Go-work\\pkg\\mod"
+    },
+}
