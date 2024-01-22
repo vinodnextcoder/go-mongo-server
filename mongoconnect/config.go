@@ -4,6 +4,7 @@ import (
 	"context"
 	"fmt"
 	"net/http"
+	"os"
 	"time"
 
 	// "go.mongodb.org/mongo-driver/bson"
@@ -98,6 +99,25 @@ func Insertdata(client *mongo.Client, ctx context.Context, dataBase, col string,
 	return result, err
 }
 
+func Insertdata1(dataBase, col string, doc interface{}) (*mongo.InsertOneResult, error) {
+
+	// connect mongodb and insert records
+	client, ctx, cancel, err := Connect("mongodb://localhost:27017/test")
+	if err != nil {
+		panic(err)
+	}
+
+	// select database and collection ith Client.Database method
+	// and Database.Collection method
+	fmt.Println("Result of InsertOne", cancel)
+	collection := client.Database(dataBase).Collection(col)
+
+	// InsertOne accept two argument of type Context
+	// and of empty interface
+	result, err := collection.InsertOne(ctx, doc)
+	return result, err
+}
+
 //  for testing added
 
 func PostMarks(c *gin.Context) {
@@ -111,7 +131,29 @@ func PostMarks(c *gin.Context) {
 		// Handle error
 		return
 	}
+	Connect("mongodb://localhost:27017/test")
+	dbname := os.Getenv("DBNAME")
+	// var client mongo.Client
+	// var ctx context.Context
+	// insertOne accepts client , context, database
+	// name collection name and an interface that
+	// will be inserted into the  collection.
+	// insertOne returns an error and a result of
+	// insert in a single document into the collection.
 
+	insertOneResult, err := Insertdata1(dbname, "marks", jsonBody)
+
+	fmt.Println(err)
+
+	// handle the error
+	if err != nil {
+		panic(err)
+	}
+
+	// print the insertion id of the document,
+	// if it is inserted.
+	fmt.Println("Result of InsertOne")
+	fmt.Println(insertOneResult.InsertedID)
 	// Use the JSON object
 	fmt.Println(jsonBody)
 	c.IndentedJSON(http.StatusCreated, jsonBody)
