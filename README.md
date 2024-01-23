@@ -30,7 +30,8 @@ You can run your Gin web application by executing the main.go file:
 go run main.go
 
 ````
-# postman collection import https://github.com/vinodnextcoder/go-mongo-server/postman_collection
+# postman collection import 
+from go-mongo-server/postman_collection
 # to call api endpoint in postman
 
 ```
