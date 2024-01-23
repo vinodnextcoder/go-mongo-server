@@ -7,4 +7,6 @@ import (
 
 func UserRoute(router *gin.Engine) {
 	router.POST("/user", markscontrollers.CreateUser())
+	router.GET("/user/:userId", markscontrollers.GetAUser())
+	router.PUT("/user/:userId", markscontrollers.EditAUser())
 }
