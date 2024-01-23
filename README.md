@@ -25,6 +25,8 @@ swag init
 
 You can run your Gin web application by executing the main.go file:
 
+postman collection import https://github.com/vinodnextcoder/go-mongo-server/tree/00c05683ca0d71e229724ebb59e183538dc4c7b4/postman_collection
+
 go run main.go
 
 ````
